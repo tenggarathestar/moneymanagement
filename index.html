@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Keuangan Reva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FEFAF3;--card:#fff;--pri:#84A282;--soft:#B8CFB3;--pink:#F6E2E9;--tx:#2e3b2d;--mu:#79877a;--ln:#ece6d9;--bad:#c25b78;--btn:#5f7e5d;--acc:#4f6f4d;--h2:#84A282;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161b16;--card:#212a21;--pink:#3a2b32;--tx:#eef3ec;--mu:#9aa898;--ln:#2f3a2e;--bad:#e58aa2;--acc:#a7c7a3;--soft:#4b614a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161b16;--card:#212a21;--pink:#3a2b32;--tx:#eef3ec;--mu:#9aa898;--ln:#2f3a2e;--bad:#e58aa2;--acc:#a7c7a3;--soft:#4b614a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Quicksand,"Segoe UI",system-ui,sans-serif;font-weight:600}
+#app{max-width:480px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:flex-start;padding:18px 16px 12px}
+h1{margin:0;font-size:24px}h2{margin:0;font-size:17px}
+#sub{margin:4px 0 0;font-size:13px;color:var(--mu);max-width:270px;font-weight:500}
+#tb{border:0;background:var(--pink);border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer}
+main{padding:0 16px 120px}
+.card{background:var(--card);border-radius:20px;padding:16px;margin:0 0 14px;box-shadow:0 2px 10px rgba(80,100,80,.1)}
+.mu{color:var(--mu)}
+.hero{background:linear-gradient(135deg,#5f7e5d,var(--h2));color:#fff;border-radius:24px;padding:20px;margin-bottom:14px}
+.hero .big{font-size:30px;font-weight:700;margin:4px 0 14px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.row3>div{background:rgba(255,255,255,.2);border-radius:14px;padding:8px 10px;font-size:11px}
+.row3 b{display:block;font-size:12px;margin-top:2px;word-break:break-word}
+.btn{border:0;border-radius:14px;padding:12px 16px;background:var(--btn);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.btn.alt{background:var(--pink);color:var(--tx)}.btn.sm{padding:8px 12px;font-size:13px}.btn.ghost{background:transparent;color:var(--bad)}
+.sh{display:flex;justify-content:space-between;align-items:center;margin:6px 0 10px}
+.tip{background:var(--pink);display:flex;gap:10px;align-items:center;font-size:13px}
+.quote{background:var(--pink)}.quote p{margin:0 0 10px;font-size:14px}
+.goal .gh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.fav{border:0;background:none;font-size:22px;color:#d4a24c;cursor:pointer}
+.bar{height:10px;background:var(--pink);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--soft),var(--pri));border-radius:9px}
+.gm{display:flex;justify-content:space-between;font-size:13px;margin-top:8px}
+.acts{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.seg{display:flex;background:var(--pink);border-radius:14px;padding:4px;gap:4px;margin-bottom:12px}
+.seg button{flex:1;border:0;background:transparent;padding:9px;border-radius:11px;font:inherit;font-weight:700;color:var(--tx);cursor:pointer}
+.seg button.on{background:var(--btn);color:#fff}
+input,textarea{width:100%;box-sizing:border-box;border:1.5px solid var(--ln);background:var(--bg);color:var(--tx);border-radius:12px;padding:12px;font:inherit;margin:6px 0 12px}
+textarea{min-height:90px;font-size:12px}
+label{font-size:13px;color:var(--mu);font-weight:700}
+.tx{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln)}
+.tx small{display:block;color:var(--mu);font-weight:500}.tx>div:last-child{display:flex;align-items:center;gap:8px}
+.in{color:var(--acc)}.out{color:var(--bad)}
+.x{border:0;background:none;color:var(--mu);font-size:20px;cursor:pointer}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--ln);padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));max-width:480px;margin:auto}
+.tabs button{flex:1;border:0;background:none;color:var(--mu);font:inherit;font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.tabs button span{font-size:20px}.tabs button.on{color:var(--acc)}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:flex-end;justify-content:center;z-index:20}
+.sheet.hidden{display:none}
+.box{background:var(--card);width:100%;max-width:480px;box-sizing:border-box;border-radius:24px 24px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));max-height:85vh;overflow:auto}
+.opt{display:block;width:100%;text-align:left;margin-bottom:8px}.opt small{display:block;font-weight:500;opacity:.8}
+#toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:14px;font-size:13px;opacity:0;transition:.3s;pointer-events:none;z-index:30}
+#toast.on{opacity:1}
+</style></head><body>
+<div id="app">
+<header class="top"><div><h1 id="hi"></h1><p id="sub"></p></div><button id="tb" data-a="tog" aria-label="Ganti tema"></button></header>
+<main id="main"></main>
+<nav class="tabs">
+<button data-a="go" data-v="home"><span>🏠</span>Beranda</button>
+<button data-a="go" data-v="tx"><span>💸</span>Transaksi</button>
+<button data-a="go" data-v="sv"><span>🌷</span>Tabungan</button>
+<button data-a="go" data-v="set"><span>⚙️</span>Atur</button>
+</nav>
+</div>
+<div id="sheet" class="sheet hidden"><div class="box" id="sbox"></div></div>
+<div id="toast"></div>
+<script>
+const NAME='Reva',K='keuangan-reva-v1';
+const Q=['Menabung kecil tapi rutin lebih kuat daripada niat besar yang cuma sekali.','Setiap rupiah yang kamu simpan hari ini adalah hadiah untuk dirimu di masa depan.','Bukan soal berapa besar penghasilanmu, tapi seberapa sering kamu menyisihkannya.','Beli yang kamu butuhkan hari ini, simpan yang kamu impikan untuk besok.','Target besar tercapai dari langkah kecil yang tidak kamu lewatkan.','Dompet yang tertata membuat hati lebih tenang.'];
+let S={tx:[],goals:[],theme:null},view='home',qi=0,txType='out';
+try{const r=localStorage.getItem(K);if(r){const d=JSON.parse(r);S.tx=Array.isArray(d.tx)?d.tx:[];S.goals=Array.isArray(d.goals)?d.goals:[];S.theme=d.theme||null}}catch(e){}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const $=s=>document.querySelector(s);
+const rp=n=>'Rp '+Math.round(n).toLocaleString('id-ID');
+const num=s=>parseInt(String(s).replace(/\D/g,''))||0;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const pct=g=>g.target>0?Math.min(100,Math.round(g.saved/g.target*100)):0;
+const sorted=()=>[...S.goals].sort((a,b)=>(!!b.fav-!!a.fav)||(pct(b)-pct(a)));
+const near=()=>[...S.goals].filter(g=>pct(g)<100).sort((a,b)=>pct(b)-pct(a))[0];
+function tot(){const f=y=>S.tx.filter(t=>t.type===y).reduce((a,t)=>a+t.amt,0),inc=f('in'),exp=f('out'),sv=S.goals.reduce((a,g)=>a+g.saved,0);return{inc,exp,sv,bal:inc-exp-sv}}
+function greet(){const t=tot();if(!S.tx.length)return 'Dompetnya masih kosong, sama seperti catatan keuangannya.';if(t.bal<0)return 'Saldonya minus. Impresif, tapi bukan dalam arti yang bagus.';if(t.exp>t.inc*.8)return 'Pengeluaran nyaris menyamai pemasukan. Konsisten sekali menyisakan nol.';return 'Saldo masih aman. Semoga godaan diskon “cuma hari ini” tidak ikut membaca ini.'}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2200)}
+function applyTheme(){const r=document.documentElement;S.theme?r.dataset.theme=S.theme:r.removeAttribute('data-theme')}
+const close=()=>$('#sheet').classList.add('hidden');
+function sheet(h,body){$('#sbox').innerHTML='<h2 style="margin-bottom:12px">'+h+'</h2>'+body;$('#sheet').classList.remove('hidden')}
+const gc=(g,act)=>`<div class="card goal"><div class="gh"><b>${esc(g.name)}</b><button class="fav" data-a="fav" data-id="${g.id}" aria-label="Favorit">${g.fav?'★':'☆'}</button></div><div class="bar"><i style="width:${pct(g)}%"></i></div><div class="gm"><span>${rp(g.saved)} dari ${rp(g.target)}</span><b>${pct(g)}%</b></div>${act?`<div class="acts"><button class="btn sm" data-a="dep" data-id="${g.id}">Setor</button><button class="btn sm alt" data-a="wd" data-id="${g.id}">Tarik</button><button class="btn sm alt" data-a="edit" data-id="${g.id}">Ubah</button><button class="btn sm ghost" data-a="del" data-id="${g.id}">Hapus</button></div>`:''}</div>`;
+function home(){const t=tot(),s=sorted(),n=near();const tip=n&&pct(n)>=70&&S.goals.some(g=>g!==n&&g.saved>0);
+return `<div class="hero"><small>Saldo tersedia</small><div class="big">${rp(t.bal)}</div><div class="row3"><div>Pemasukan<b>${rp(t.inc)}</b></div><div>Pengeluaran<b>${rp(t.exp)}</b></div><div>Tabungan<b>${rp(t.sv)}</b></div></div></div>
+${tip?`<div class="card tip"><span>Target “${esc(n.name)}” sudah ${pct(n)}%. Gabungkan uang dari target lain agar cepat tercapai?</span><button class="btn sm" data-a="m" data-m="acc">Gabungkan</button></div>`:''}
+<div class="sh"><h2>Target tabungan</h2><button class="btn sm alt" data-a="merge">Gabungkan</button></div>
+${s.length?s.slice(0,3).map(g=>gc(g)).join(''):'<div class="card mu">Belum ada target. Buat di tab Tabungan.</div>'}
+<div class="card quote"><p>${Q[qi%Q.length]}</p><button class="btn sm alt" data-a="q" style="background:var(--card)">Motivasi lain</button></div>`}
+function txv(){const l=[...S.tx].sort((a,b)=>b.d-a.d).slice(0,100);
+return `<div class="card"><div class="seg"><button data-a="type" data-t="in" class="${txType==='in'?'on':''}">Pemasukan</button><button data-a="type" data-t="out" class="${txType==='out'?'on':''}">Pengeluaran</button></div><label>Nominal (Rp)</label><input class="amt" id="amt" inputmode="numeric" placeholder="0"><label>Catatan</label><input id="note" placeholder="Misal: gaji, jajan, skincare"><button class="btn" style="width:100%" data-a="addtx">Simpan</button></div>
+<div class="sh"><h2>Riwayat</h2></div><div class="card">${l.length?l.map(t=>`<div class="tx"><div><b>${esc(t.note||(t.type==='in'?'Pemasukan':'Pengeluaran'))}</b><small>${new Date(t.d).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}</small></div><div class="${t.type}"><b>${t.type==='in'?'+':'−'}${rp(t.amt)}</b><button class="x" data-a="deltx" data-id="${t.id}" aria-label="Hapus">×</button></div></div>`).join(''):'<span class="mu">Belum ada transaksi.</span>'}</div>`}
+function svv(){const s=sorted();return `<div class="sh"><h2>Tabungan target</h2><button class="btn sm" data-a="newgoal">+ Target</button></div>${s.length?s.map(g=>gc(g,1)).join(''):'<div class="card mu">Belum ada target. Mulai dari yang kecil dulu.</div>'}${s.length>1?'<button class="btn alt" style="width:100%" data-a="merge">Gabungkan tabungan</button>':''}`}
+function setv(){const th=S.theme||'auto',b=(t,l)=>`<button data-a="theme" data-t="${t}" class="${th===t?'on':''}">${l}</button>`;
+return `<div class="card"><h2 style="margin-bottom:10px">Tampilan</h2><div class="seg" style="margin:0">${b('light','Terang')}${b('dark','Gelap')}${b('auto','Otomatis')}</div></div>
+<div class="card"><h2>Ekspor data</h2><p class="mu" style="font-size:13px">Salin teks ini dan simpan di tempat aman, misalnya catatan atau chat ke diri sendiri.</p><textarea id="ex" readonly>${esc(JSON.stringify({tx:S.tx,goals:S.goals}))}</textarea><button class="btn" data-a="copy">Salin data</button></div>
+<div class="card"><h2>Impor data</h2><p class="mu" style="font-size:13px">Tempel data hasil ekspor, atau pilih file .json. Data saat ini akan diganti.</p><textarea id="im" placeholder="Tempel di sini"></textarea><input type="file" id="fi" accept=".json,.txt,application/json"><button class="btn" data-a="imp">Impor</button></div>
+<div class="card"><h2>Hapus semua data</h2><p class="mu" style="font-size:13px">Semua transaksi dan target akan dihapus dari perangkat ini.</p><button class="btn ghost" data-a="reset" style="padding-left:0">Hapus semua</button></div>`}
+function render(){$('#hi').textContent='Halo, '+NAME;$('#sub').textContent=greet();$('#tb').textContent=(S.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark'?'☀️':'🌙';document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===view));$('#main').innerHTML={home,tx:txv,sv:svv,set:setv}[view]()}
+function goalForm(g){sheet(g?'Ubah target':'Target baru',`<label>Nama target</label><input id="gn" value="${g?esc(g.name):''}" placeholder="Misal: Liburan"><label>Nominal target (Rp)</label><input class="amt" id="gt" inputmode="numeric" value="${g?g.target.toLocaleString('id-ID'):''}"><button class="btn" style="width:100%" data-a="savegoal" data-id="${g?g.id:''}">Simpan</button>`)}
+function amtForm(g,m){sheet((m==='dep'?'Setor ke ':'Tarik dari ')+esc(g.name),`<p class="mu" style="margin:0 0 6px;font-size:13px">${m==='dep'?'Saldo tersedia '+rp(tot().bal):'Tersimpan '+rp(g.saved)}</p><input class="amt" id="ga" inputmode="numeric" placeholder="Nominal"><button class="btn" style="width:100%" data-a="doamt" data-id="${g.id}" data-m="${m}">Konfirmasi</button>`)}
+function confirmBox(h,p,a,id){sheet(h,`<p>${p}</p><button class="btn" style="width:100%" data-a="${a}" data-id="${id||''}">Ya, lanjutkan</button>`)}
+function doMerge(m){const g=S.goals;if(g.length<2)return toast('Butuh minimal 2 target');
+if(m==='acc'){const c=near();if(!c)return toast('Semua target sudah tercapai');let need=c.target-c.saved;g.filter(x=>x!==c).sort((a,b)=>pct(a)-pct(b)).forEach(x=>{const t=Math.min(need,x.saved);x.saved-=t;c.saved+=t;need-=t})}
+else{let pool=g.reduce((a,x)=>a+x.saved,0);const o=[...g].sort(m==='hi'?(a,b)=>pct(b)-pct(a):m==='lo'?(a,b)=>pct(a)-pct(b):(a,b)=>(!!b.fav-!!a.fav)||(pct(b)-pct(a)));o.forEach(x=>{x.saved=Math.min(x.target,pool);pool-=x.saved});if(pool>0)toast('Sisa '+rp(pool)+' kembali ke saldo')}
+save();close();render()}
+document.addEventListener('input',e=>{const i=e.target;if(i.classList&&i.classList.contains('amt')){const n=num(i.value);i.value=n?n.toLocaleString('id-ID'):''}});
+document.addEventListener('change',e=>{if(e.target.id==='fi'){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#im').value=r.result};r.readAsText(f)}});
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el){if(e.target.id==='sheet')close();return}
+const a=el.dataset.a,id=el.dataset.id,g=S.goals.find(x=>x.id===id);
+if(a==='go'){view=el.dataset.v;render();scrollTo(0,0)}
+else if(a==='tog'){const eff=S.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');S.theme=eff==='dark'?'light':'dark';applyTheme();save();render()}
+else if(a==='theme'){S.theme=el.dataset.t==='auto'?null:el.dataset.t;applyTheme();save();render()}
+else if(a==='q'){qi++;render()}
+else if(a==='type'){txType=el.dataset.t;document.querySelectorAll('.seg [data-a=type]').forEach(b=>b.classList.toggle('on',b===el))}
+else if(a==='addtx'){const amt=num($('#amt').value);if(!amt)return toast('Isi nominalnya dulu');S.tx.push({id:uid(),type:txType,amt,note:$('#note').value.trim(),d:Date.now()});save();render();toast('Tersimpan')}
+else if(a==='deltx'){S.tx=S.tx.filter(t=>t.id!==id);save();render()}
+else if(a==='newgoal')goalForm();
+else if(a==='edit'&&g)goalForm(g);
+else if(a==='savegoal'){const name=$('#gn').value.trim(),target=num($('#gt').value);if(!name||!target)return toast('Isi nama dan nominal target');if(id){const x=S.goals.find(y=>y.id===id);x.name=name;x.target=target}else S.goals.push({id:uid(),name,target,saved:0,fav:false});save();close();render()}
+else if(a==='fav'&&g){g.fav=!g.fav;save();render()}
+else if(a==='del'&&g)confirmBox('Hapus target?','Uang '+rp(g.saved)+' di target ini akan kembali ke saldo.','dodel',id);
+else if(a==='dodel'){S.goals=S.goals.filter(x=>x.id!==id);save();close();render()}
+else if((a==='dep'||a==='wd')&&g)amtForm(g,a);
+else if(a==='doamt'&&g){const v=num($('#ga').value),m=el.dataset.m;if(!v)return toast('Isi nominalnya dulu');if(m==='dep'){if(v>tot().bal)return toast('Saldo tidak cukup');g.saved+=v}else{if(v>g.saved)return toast('Melebihi uang di target ini');g.saved-=v}save();close();render()}
+else if(a==='merge')sheet('Gabungkan tabungan',`<button class="btn opt" data-a="m" data-m="acc">Akumulasi<small>Uang target lain dipindah ke target yang paling dekat tercapai</small></button><button class="btn opt alt" data-a="m" data-m="hi">Tertinggi ke terendah<small>Semua uang diisi ke target dengan persentase tertinggi dulu</small></button><button class="btn opt alt" data-a="m" data-m="lo">Terendah ke tertinggi<small>Semua uang diisi ke target dengan persentase terendah dulu</small></button><button class="btn opt alt" data-a="m" data-m="fav">Favorit ke tidak favorit<small>Target favorit diisi lebih dulu</small></button>`);
+else if(a==='m')doMerge(el.dataset.m);
+else if(a==='copy'){const t=$('#ex');t.select();try{navigator.clipboard.writeText(t.value).then(()=>toast('Data disalin'),()=>{document.execCommand('copy');toast('Data disalin')})}catch(x){try{document.execCommand('copy');toast('Data disalin')}catch(y){toast('Salin manual dari kotak teks')}}}
+else if(a==='imp'){try{const d=JSON.parse($('#im').value);if(!Array.isArray(d.tx)||!Array.isArray(d.goals))throw 0;S.tx=d.tx.filter(t=>t&&(t.type==='in'||t.type==='out')&&+t.amt>0).map(t=>({id:String(t.id||uid()),type:t.type,amt:+t.amt,note:String(t.note||''),d:+t.d||Date.now()}));S.goals=d.goals.filter(x=>x&&x.name&&+x.target>0).map(x=>({id:String(x.id||uid()),name:String(x.name),target:+x.target,saved:Math.max(0,+x.saved||0),fav:!!x.fav}));save();render();toast('Data berhasil diimpor')}catch(x){toast('Format data tidak dikenali')}}
+else if(a==='reset')confirmBox('Hapus semua data?','Tindakan ini tidak bisa dibatalkan.','doreset');
+else if(a==='doreset'){S.tx=[];S.goals=[];save();close();render()}
+});
+applyTheme();render();
+</script></body></html>
